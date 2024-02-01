@@ -7,7 +7,7 @@ package amt
 import (
 	"errors"
 	"fmt"
-	"rpc/pkg/pthi"
+	"github.com/jc-lab/intel-amt-host-api/pkg/pthi"
 	"testing"
 	"time"
 

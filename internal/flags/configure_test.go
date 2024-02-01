@@ -3,8 +3,8 @@ package flags
 import (
 	"fmt"
 	"os"
-	"rpc/internal/config"
-	"rpc/pkg/utils"
+	"github.com/jc-lab/intel-amt-host-api/internal/config"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 	"strings"
 	"testing"
 

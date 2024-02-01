@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"reflect"
 	"regexp"
-	"rpc/pkg/utils"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 
 	log "github.com/sirupsen/logrus"
 )

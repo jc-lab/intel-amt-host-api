@@ -7,8 +7,8 @@ package amt
 import (
 	"errors"
 	"fmt"
-	"rpc/pkg/pthi"
-	"rpc/pkg/utils"
+	"github.com/jc-lab/intel-amt-host-api/pkg/pthi"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 	"strconv"
 	"strings"
 	"time"

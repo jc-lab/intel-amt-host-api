@@ -7,8 +7,8 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
-	"rpc/internal/amt"
-	"rpc/pkg/utils"
+	"github.com/jc-lab/intel-amt-host-api/internal/amt"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 
 	log "github.com/sirupsen/logrus"
 )

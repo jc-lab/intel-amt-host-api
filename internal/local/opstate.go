@@ -2,8 +2,8 @@ package local
 
 import (
 	log "github.com/sirupsen/logrus"
-	"rpc/internal/flags"
-	"rpc/pkg/utils"
+	"github.com/jc-lab/intel-amt-host-api/internal/flags"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 )
 
 func (service *ProvisioningService) EnableAMT() utils.ReturnCode {

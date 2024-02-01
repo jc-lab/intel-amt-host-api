@@ -8,7 +8,7 @@ import (
 	"bytes"
 	"encoding/binary"
 	"errors"
-	"rpc/pkg/apf"
+	"github.com/jc-lab/intel-amt-host-api/pkg/apf"
 	"testing"
 
 	"github.com/stretchr/testify/assert"

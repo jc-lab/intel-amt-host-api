@@ -2,7 +2,7 @@ package flags
 
 import (
 	"flag"
-	"rpc/pkg/utils"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 )
 
 type AmtInfoFlags struct {

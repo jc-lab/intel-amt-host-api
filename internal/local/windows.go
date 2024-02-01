@@ -9,7 +9,7 @@ package local
 
 import (
 	"os/exec"
-	"rpc/pkg/utils"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 
 	log "github.com/sirupsen/logrus"
 )

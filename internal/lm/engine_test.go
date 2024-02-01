@@ -6,8 +6,8 @@ package lm
 
 import (
 	"errors"
-	"rpc/pkg/apf"
-	"rpc/pkg/pthi"
+	"github.com/jc-lab/intel-amt-host-api/pkg/apf"
+	"github.com/jc-lab/intel-amt-host-api/pkg/pthi"
 	"testing"
 
 	"github.com/stretchr/testify/assert"

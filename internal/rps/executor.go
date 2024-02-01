@@ -7,9 +7,9 @@ package rps
 import (
 	"os"
 	"os/signal"
-	"rpc/internal/flags"
-	"rpc/internal/lm"
-	"rpc/pkg/utils"
+	"github.com/jc-lab/intel-amt-host-api/internal/flags"
+	"github.com/jc-lab/intel-amt-host-api/internal/lm"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 	"syscall"
 
 	log "github.com/sirupsen/logrus"

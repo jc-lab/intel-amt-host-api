@@ -2,7 +2,7 @@ package flags
 
 import (
 	"fmt"
-	"rpc/pkg/utils"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 )
 
 func (f *Flags) handleDeactivateCommand() utils.ReturnCode {

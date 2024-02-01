@@ -11,7 +11,7 @@ import "C"
 
 import (
 	"encoding/csv"
-	"rpc/pkg/utils"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 	"strings"
 
 	log "github.com/sirupsen/logrus"

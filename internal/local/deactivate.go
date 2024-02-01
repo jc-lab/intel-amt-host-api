@@ -2,7 +2,7 @@ package local
 
 import (
 	"encoding/xml"
-	"rpc/pkg/utils"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 
 	"github.com/open-amt-cloud-toolkit/go-wsman-messages/pkg/amt/setupandconfiguration"
 	log "github.com/sirupsen/logrus"

@@ -11,7 +11,7 @@ package local
 import (
 	log "github.com/sirupsen/logrus"
 	"os/exec"
-	"rpc/pkg/utils"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 )
 
 func (n *RealOSNetworker) RenewDHCPLease() utils.ReturnCode {

@@ -5,12 +5,12 @@
 package main
 
 import (
+	"github.com/jc-lab/intel-amt-host-api/internal/amt"
+	"github.com/jc-lab/intel-amt-host-api/internal/flags"
+	"github.com/jc-lab/intel-amt-host-api/internal/local"
+	"github.com/jc-lab/intel-amt-host-api/internal/rps"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 	"os"
-	"rpc/internal/amt"
-	"rpc/internal/flags"
-	"rpc/internal/local"
-	"rpc/internal/rps"
-	"rpc/pkg/utils"
 
 	log "github.com/sirupsen/logrus"
 )

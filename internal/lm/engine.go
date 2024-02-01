@@ -7,8 +7,8 @@ package lm
 import (
 	"bytes"
 	"encoding/binary"
-	"rpc/pkg/apf"
-	"rpc/pkg/pthi"
+	"github.com/jc-lab/intel-amt-host-api/pkg/apf"
+	"github.com/jc-lab/intel-amt-host-api/pkg/pthi"
 	"time"
 
 	log "github.com/sirupsen/logrus"

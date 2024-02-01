@@ -1,7 +1,7 @@
 package flags
 
 import (
-	"rpc/pkg/utils"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 	"testing"
 
 	"github.com/stretchr/testify/assert"

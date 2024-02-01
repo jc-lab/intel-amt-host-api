@@ -1,4 +1,4 @@
-module rpc
+module github.com/jc-lab/intel-amt-host-api
 
 go 1.20
 

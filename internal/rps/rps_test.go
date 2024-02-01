@@ -7,8 +7,8 @@ package rps
 import (
 	"net/http"
 	"net/http/httptest"
-	"rpc/internal/flags"
-	"rpc/pkg/utils"
+	"github.com/jc-lab/intel-amt-host-api/internal/flags"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 	"strings"
 	"sync"
 	"testing"

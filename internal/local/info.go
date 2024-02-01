@@ -6,8 +6,8 @@ import (
 	"github.com/open-amt-cloud-toolkit/go-wsman-messages/pkg/amt/publickey"
 	"github.com/open-amt-cloud-toolkit/go-wsman-messages/pkg/amt/publicprivate"
 	"os"
-	"rpc/internal/amt"
-	"rpc/pkg/utils"
+	"github.com/jc-lab/intel-amt-host-api/internal/amt"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 	"strconv"
 	"strings"
 

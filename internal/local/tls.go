@@ -7,9 +7,9 @@ import (
 	"github.com/open-amt-cloud-toolkit/go-wsman-messages/pkg/amt/tls"
 	"github.com/open-amt-cloud-toolkit/go-wsman-messages/pkg/common"
 	log "github.com/sirupsen/logrus"
-	"rpc/internal/certs"
-	"rpc/internal/flags"
-	"rpc/pkg/utils"
+	"github.com/jc-lab/intel-amt-host-api/internal/certs"
+	"github.com/jc-lab/intel-amt-host-api/internal/flags"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 	"strings"
 )
 

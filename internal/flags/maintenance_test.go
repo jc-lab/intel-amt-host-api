@@ -3,7 +3,7 @@ package flags
 import (
 	"os"
 	"path/filepath"
-	"rpc/pkg/utils"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 	"strings"
 	"testing"
 

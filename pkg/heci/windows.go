@@ -15,7 +15,7 @@ import (
 	"syscall"
 	"unsafe"
 
-	setupapi "rpc/pkg/windows"
+	setupapi "github.com/jc-lab/intel-amt-host-api/pkg/windows"
 
 	"golang.org/x/sys/windows"
 )

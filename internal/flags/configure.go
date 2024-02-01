@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"rpc/internal/config"
-	"rpc/pkg/utils"
+	"github.com/jc-lab/intel-amt-host-api/internal/config"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 
 	"github.com/open-amt-cloud-toolkit/go-wsman-messages/pkg/cim/models"
 

@@ -9,9 +9,9 @@ import (
 	"encoding/json"
 	"errors"
 	"os"
-	"rpc/internal/amt"
-	"rpc/internal/flags"
-	"rpc/pkg/utils"
+	"github.com/jc-lab/intel-amt-host-api/internal/amt"
+	"github.com/jc-lab/intel-amt-host-api/internal/flags"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 	"testing"
 	"time"
 

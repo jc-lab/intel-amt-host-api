@@ -2,7 +2,7 @@ package flags
 
 import (
 	"os"
-	"rpc/pkg/utils"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 	"strings"
 	"testing"
 	"time"

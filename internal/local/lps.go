@@ -1,10 +1,10 @@
 package local
 
 import (
-	internalAMT "rpc/internal/amt"
-	"rpc/internal/config"
-	"rpc/internal/flags"
-	"rpc/pkg/utils"
+	internalAMT "github.com/jc-lab/intel-amt-host-api/internal/amt"
+	"github.com/jc-lab/intel-amt-host-api/internal/config"
+	"github.com/jc-lab/intel-amt-host-api/internal/flags"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 
 	"github.com/open-amt-cloud-toolkit/go-wsman-messages/pkg/amt"
 	"github.com/open-amt-cloud-toolkit/go-wsman-messages/pkg/cim"

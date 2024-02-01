@@ -11,7 +11,7 @@ import (
 	"encoding/pem"
 	"encoding/xml"
 	"errors"
-	"rpc/pkg/utils"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 	"strings"
 
 	"github.com/open-amt-cloud-toolkit/go-wsman-messages/pkg/amt/general"

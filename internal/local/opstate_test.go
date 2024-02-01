@@ -3,9 +3,9 @@ package local
 import (
 	log "github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
-	"rpc/internal/amt"
-	"rpc/internal/flags"
-	"rpc/pkg/utils"
+	"github.com/jc-lab/intel-amt-host-api/internal/amt"
+	"github.com/jc-lab/intel-amt-host-api/internal/flags"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 	"testing"
 )
 

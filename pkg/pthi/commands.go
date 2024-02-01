@@ -8,7 +8,7 @@ import (
 	"bytes"
 	"encoding/binary"
 	"errors"
-	"rpc/pkg/heci"
+	"github.com/jc-lab/intel-amt-host-api/pkg/heci"
 )
 
 type Command struct {

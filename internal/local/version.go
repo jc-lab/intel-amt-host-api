@@ -2,7 +2,7 @@ package local
 
 import (
 	"encoding/json"
-	"rpc/pkg/utils"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 	"strings"
 )
 

@@ -10,8 +10,8 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/url"
-	"rpc/internal/flags"
-	"rpc/pkg/utils"
+	"github.com/jc-lab/intel-amt-host-api/internal/flags"
+	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
 
 	"github.com/gorilla/websocket"
 	log "github.com/sirupsen/logrus"
