@@ -32,6 +32,8 @@ type Interface interface {
 	GetLANInterfaceSettings(useWireless bool) (LANInterface GetLANInterfaceSettingsResponse, err error)
 	GetLocalSystemAccount() (localAccount GetLocalSystemAccountResponse, err error)
 	Unprovision() (mode int, err error)
+	StopConfiguration() (status Status, err error)
+	StartConfigurationHBased(ServerHashAlgorithm CERT_HASH_ALGORITHM, ServerCertHash []byte, HostVPNEnable bool, NetworkDnsSuffix []string) (response StartConfigurationHBasedResponse, err error)
 }
 
 func NewCommand() Command {
@@ -415,6 +417,56 @@ func (pthi Command) GetLocalSystemAccount() (localAccount GetLocalSystemAccountR
 
 	binary.Read(buf2, binary.LittleEndian, &response.Account.Username)
 	binary.Read(buf2, binary.LittleEndian, &response.Account.Password)
+
+	return response, nil
+}
+
+func (pthi Command) StopConfiguration() (status Status, err error) {
+	header := CreateRequestHeader(STOP_CONFIGURATION_REQUEST, 0)
+	var bin_buf bytes.Buffer
+	binary.Write(&bin_buf, binary.LittleEndian, header)
+	result, err := pthi.Call(bin_buf.Bytes(), GET_REQUEST_SIZE)
+	if err != nil {
+		return AMT_STATUS_INTERNAL_ERROR, err
+	}
+	buf2 := bytes.NewBuffer(result)
+	response := readHeaderResponse(buf2)
+
+	return response.Status, nil
+}
+
+func (pthi Command) StartConfigurationHBased(ServerHashAlgorithm CERT_HASH_ALGORITHM, ServerCertHash []byte, HostVPNEnable bool, NetworkDnsSuffixList []string) (response StartConfigurationHBasedResponse, err error) {
+	var dnsSuffixBuf bytes.Buffer
+	for _, s := range NetworkDnsSuffixList {
+		dnsSuffixBuf.WriteString(s)
+		dnsSuffixBuf.WriteByte(0)
+	}
+
+	command := StartConfigurationHBasedRequest{
+		Header:              CreateRequestHeader(START_CONFIGURATION_HBASED_REQUEST, 1+64+4+4+320),
+		ServerHashAlgorithm: ServerHashAlgorithm,
+		HostVPNEnable:       AMT_FALSE,
+		SuffixListLen:       uint32(dnsSuffixBuf.Len()),
+	}
+	copy(command.ServerCertHash[:], ServerCertHash)
+	if HostVPNEnable {
+		command.HostVPNEnable = AMT_TRUE
+	}
+	copy(command.NetworkDnsSuffixList[:], dnsSuffixBuf.Bytes())
+
+	var bin_buf bytes.Buffer
+	binary.Write(&bin_buf, binary.LittleEndian, command)
+	result, err := pthi.Call(bin_buf.Bytes(), GET_REQUEST_SIZE+1+64+4+4+320) // Extra 4 bytes for the mode
+	if err != nil {
+		emptyResponse := StartConfigurationHBasedResponse{}
+		return emptyResponse, err
+	}
+	buf2 := bytes.NewBuffer(result)
+	response = StartConfigurationHBasedResponse{
+		Header: readHeaderResponse(buf2),
+	}
+	binary.Read(buf2, binary.LittleEndian, &response.HashAlgorithm)
+	binary.Read(buf2, binary.LittleEndian, &response.AMTCertHash)
 
 	return response, nil
 }

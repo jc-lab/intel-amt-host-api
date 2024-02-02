@@ -121,6 +121,12 @@ const STOP_CONFIGURATION_RESPONSE = 0x480005e
 const GET_UUID_REQUEST = 0x400005c
 const GET_UUID_RESPONSE = 0x480005c
 
+const STOP_CONFIGURATION_HBASED_REQUEST = 0x0400005e
+const STOP_CONFIGURATION_HBASED_RESPONSE = 0x0480005e
+
+const START_CONFIGURATION_HBASED_REQUEST = 0x0400008b
+const START_CONFIGURATION_HBASED_RESPONSE = 0x0480008b
+
 const STATE_INDEPENNDENCE_IsChangeToAMTEnabled_CMD = 0x5
 const STATE_INDEPENNDENCE_IsChangeToAMTEnabled_SUBCMD = 0x51
 
@@ -304,4 +310,39 @@ type SetAmtOperationalStateResponse struct {
 	SubCommand    uint8
 	VersionNumber uint8
 	Status        Status
+}
+
+const SHA_512_KEY_SIZE = 64
+
+type AMT_BOOLEAN uint32
+
+const (
+	AMT_FALSE AMT_BOOLEAN = 0
+	AMT_TRUE  AMT_BOOLEAN = 1
+)
+
+type CERT_HASH_ALGORITHM uint8
+
+const (
+	CERT_HASH_ALGORITHM_MD5    CERT_HASH_ALGORITHM = 0
+	CERT_HASH_ALGORITHM_SHA1   CERT_HASH_ALGORITHM = 1
+	CERT_HASH_ALGORITHM_SHA256 CERT_HASH_ALGORITHM = 2
+	CERT_HASH_ALGORITHM_SHA384 CERT_HASH_ALGORITHM = 3
+	CERT_HASH_ALGORITHM_SHA224 CERT_HASH_ALGORITHM = 4
+	CERT_HASH_ALGORITHM_SHA512 CERT_HASH_ALGORITHM = 5
+)
+
+type StartConfigurationHBasedRequest struct {
+	Header               MessageHeader
+	ServerHashAlgorithm  CERT_HASH_ALGORITHM
+	ServerCertHash       [SHA_512_KEY_SIZE]byte
+	HostVPNEnable        AMT_BOOLEAN
+	SuffixListLen        uint32
+	NetworkDnsSuffixList [320]byte
+}
+
+type StartConfigurationHBasedResponse struct {
+	Header        ResponseMessageHeader
+	HashAlgorithm CERT_HASH_ALGORITHM
+	AMTCertHash   [SHA_512_KEY_SIZE]byte
 }

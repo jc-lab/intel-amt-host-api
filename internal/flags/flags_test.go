@@ -99,6 +99,13 @@ func (c MockPTHICommands) Unprovision() (mode int, err error) {
 	return result, nil
 }
 
+func (c MockPTHICommands) StopConfiguration() (status pthi.Status, err error) {
+	return 0, nil
+}
+func (c MockPTHICommands) StartConfigurationHBased(ServerHashAlgorithm pthi.CERT_HASH_ALGORITHM, ServerCertHash []byte, HostVPNEnable bool, NetworkDnsSuffix []string) (response pthi.StartConfigurationHBasedResponse, err error) {
+	return pthi.StartConfigurationHBasedResponse{}, nil
+}
+
 var testNetEnumerator = NetEnumerator{
 	Interfaces: func() ([]net.Interface, error) {
 		return []net.Interface{

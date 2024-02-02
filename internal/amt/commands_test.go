@@ -145,7 +145,11 @@ func (c MockPTHICommands) GetLocalSystemAccount() (localAccount pthi.GetLocalSys
 		},
 	}, nil
 }
-func (c MockPTHICommands) Unprovision() (state int, err error) { return 0, nil }
+func (c MockPTHICommands) Unprovision() (state int, err error)                { return 0, nil }
+func (c MockPTHICommands) StopConfiguration() (status pthi.Status, err error) { return 0, nil }
+func (c MockPTHICommands) StartConfigurationHBased(ServerHashAlgorithm pthi.CERT_HASH_ALGORITHM, ServerCertHash []byte, HostVPNEnable bool, NetworkDnsSuffix []string) (response pthi.StartConfigurationHBasedResponse, err error) {
+	return pthi.StartConfigurationHBasedResponse{}, nil
+}
 
 var amt AMTCommand
 
