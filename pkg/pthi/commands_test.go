@@ -23,6 +23,10 @@ var mockInitErr error = nil
 var mockInitUseLMEResult bool
 var mockInitUseWDResult bool
 
+func (c *MockHECICommands) GetHardwareId() string {
+	return ""
+}
+
 func (c *MockHECICommands) Init(useLME bool, useWD bool) error {
 	mockInitUseLMEResult = useLME
 	mockInitUseWDResult = useWD

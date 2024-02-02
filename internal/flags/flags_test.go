@@ -9,14 +9,14 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"gopkg.in/yaml.v3"
-	"net"
-	"os"
-	"path/filepath"
 	"github.com/jc-lab/intel-amt-host-api/internal/config"
 	"github.com/jc-lab/intel-amt-host-api/internal/smb"
 	"github.com/jc-lab/intel-amt-host-api/pkg/pthi"
 	"github.com/jc-lab/intel-amt-host-api/pkg/utils"
+	"gopkg.in/yaml.v3"
+	"net"
+	"os"
+	"path/filepath"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -32,6 +32,9 @@ type MockPTHICommands struct{}
 
 func (c MockPTHICommands) OpenWatchdog() error {
 	return nil
+}
+func (c MockPTHICommands) GetHardwareId() string {
+	return ""
 }
 func (c MockPTHICommands) Open(bool) error {
 	return nil

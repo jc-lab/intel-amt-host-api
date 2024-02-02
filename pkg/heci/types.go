@@ -1,6 +1,7 @@
 package heci
 
 type Interface interface {
+	GetHardwareId() string
 	Init(useLME bool, useWD bool) error
 	GetBufferSize() uint32
 	SendMessage(buffer []byte, done *uint32) (bytesWritten uint32, err error)

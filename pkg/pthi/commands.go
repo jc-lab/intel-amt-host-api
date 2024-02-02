@@ -16,6 +16,7 @@ type Command struct {
 }
 
 type Interface interface {
+	GetHardwareId() string
 	Open(useLME bool) error
 	OpenWatchdog() error
 	Close()
@@ -37,6 +38,10 @@ func NewCommand() Command {
 	return Command{
 		Heci: heci.NewDriver(),
 	}
+}
+
+func (pthi Command) GetHardwareId() string {
+	return pthi.Heci.GetHardwareId()
 }
 
 func (pthi Command) Open(useLME bool) error {

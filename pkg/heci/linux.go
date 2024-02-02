@@ -10,7 +10,9 @@ package heci
 import (
 	"bytes"
 	"encoding/binary"
+	"fmt"
 	"os"
+	"strings"
 	"syscall"
 	"unsafe"
 
@@ -40,6 +42,63 @@ var MEI_WDIF = [16]uint8{0x6f, 0x9a, 0xb7, 0x05, 0x28, 0x46, 0x7f, 0x4d, 0x89, 0
 
 func NewDriver() *Driver {
 	return &Driver{}
+}
+
+func (heci *Driver) GetHardwareId() string {
+	fileInfo, err := os.Stat(Device)
+	if err != nil {
+		log.Warn(err)
+		return ""
+	}
+	stat, ok := fileInfo.Sys().(*syscall.Stat_t)
+	if stat == nil || !ok {
+		log.Warn(err)
+		return ""
+	}
+
+	major := unix.Major(stat.Rdev)
+	minor := unix.Minor(stat.Rdev)
+
+	deviceDirectory := fmt.Sprintf("/sys/dev/char/%d:%d/device/", int(major), int(minor))
+
+	bVendor, err := os.ReadFile(deviceDirectory + "vendor")
+	if err != nil {
+		log.Warn(err)
+		return ""
+	}
+
+	bDevice, err := os.ReadFile(deviceDirectory + "device")
+	if err != nil {
+		log.Warn(err)
+		return ""
+	}
+
+	bSubsystemVendor, err := os.ReadFile(deviceDirectory + "subsystem_vendor")
+	if err != nil {
+		log.Warn(err)
+		return ""
+	}
+
+	bSubsystemDevice, err := os.ReadFile(deviceDirectory + "subsystem_device")
+	if err != nil {
+		log.Warn(err)
+		return ""
+	}
+
+	bRevision, err := os.ReadFile(deviceDirectory + "revision")
+	if err != nil {
+		log.Warn(err)
+		return ""
+	}
+
+	cutset := " \r\n"
+	vendor := strings.Trim(string(bVendor)[2:], cutset)
+	device := strings.Trim(string(bDevice)[2:], cutset)
+	subsystemVendor := strings.Trim(string(bSubsystemVendor)[2:], cutset)
+	subsystemDevice := strings.Trim(string(bSubsystemDevice)[2:], cutset)
+	revision := strings.Trim(string(bRevision)[2:], cutset)
+
+	return fmt.Sprintf("pci#ven_%s&dev_%s&subsys_%s%s&rev_%s", vendor, device, subsystemVendor, subsystemDevice, revision)
 }
 
 func (heci *Driver) Init(useLME bool, useWD bool) error {

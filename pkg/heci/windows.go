@@ -12,7 +12,9 @@ import (
 	"encoding/binary"
 	"errors"
 	"reflect"
+	"strings"
 	"syscall"
+	"unicode/utf16"
 	"unsafe"
 
 	setupapi "github.com/jc-lab/intel-amt-host-api/pkg/windows"
@@ -28,6 +30,7 @@ func ctl_code(device_type, function, method, access uint32) uint32 {
 }
 
 type Driver struct {
+	hardwareID     string
 	meiDevice      windows.Handle
 	bufferSize     uint32
 	PTHIGUID       windows.GUID
@@ -49,6 +52,10 @@ type HeciVersionPacked struct {
 
 func NewDriver() *Driver {
 	return &Driver{}
+}
+
+func (heci *Driver) GetHardwareId() string {
+	return heci.hardwareID
 }
 
 func (heci *Driver) Init(useLME bool, useWD bool) error {
@@ -128,6 +135,10 @@ func (heci *Driver) FindDevices() error {
 	if err != nil {
 		return err
 	}
+
+	hardwarePath := string(utf16.Decode(buf[firstChar:l]))
+	heci.hardwareID = "pci#" + strings.Split(hardwarePath, "#")[1]
+
 	heci.meiDevice, err = windows.CreateFile(&buf[2], windows.GENERIC_READ|windows.GENERIC_WRITE, windows.FILE_SHARE_READ|windows.FILE_SHARE_WRITE, nil, windows.OPEN_EXISTING, windows.FILE_FLAG_OVERLAPPED, 0)
 
 	if err != nil {

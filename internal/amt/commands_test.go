@@ -30,6 +30,7 @@ var flag bool = false
 var flag1 bool = false
 var returnError bool = false
 
+func (c MockPTHICommands) GetHardwareId() string { return "" }
 func (c MockPTHICommands) Open(useLME bool) error {
 	if flag == true {
 		return errors.New("The handle is invalid.")
