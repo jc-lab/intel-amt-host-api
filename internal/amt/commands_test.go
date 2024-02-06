@@ -150,6 +150,9 @@ func (c MockPTHICommands) StopConfiguration() (status pthi.Status, err error) { 
 func (c MockPTHICommands) StartConfigurationHBased(ServerHashAlgorithm pthi.CERT_HASH_ALGORITHM, ServerCertHash []byte, HostVPNEnable bool, NetworkDnsSuffix []string) (response pthi.StartConfigurationHBasedResponse, err error) {
 	return pthi.StartConfigurationHBasedResponse{}, nil
 }
+func (c MockPTHICommands) SetPkiFQDNSuffix(suffix string) (status pthi.Status, err error) {
+	return 0, nil
+}
 
 var amt AMTCommand
 

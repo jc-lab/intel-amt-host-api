@@ -34,6 +34,7 @@ type Interface interface {
 	Unprovision() (mode int, err error)
 	StopConfiguration() (status Status, err error)
 	StartConfigurationHBased(ServerHashAlgorithm CERT_HASH_ALGORITHM, ServerCertHash []byte, HostVPNEnable bool, NetworkDnsSuffix []string) (response StartConfigurationHBasedResponse, err error)
+	SetPkiFQDNSuffix(suffix string) (status Status, err error)
 }
 
 func NewCommand() Command {
@@ -469,4 +470,22 @@ func (pthi Command) StartConfigurationHBased(ServerHashAlgorithm CERT_HASH_ALGOR
 	binary.Read(buf2, binary.LittleEndian, &response.AMTCertHash)
 
 	return response, nil
+}
+
+func (pthi Command) SetPkiFQDNSuffix(suffix string) (status Status, err error) {
+	command := SetPkiFQDNSuffix{
+		Header: CreateRequestHeader(SET_PKI_FQDN_SUFFIX_REQUEST, 1002),
+	}
+	command.Suffix.Length = uint16(len(suffix))
+	copy(command.Suffix.Buffer[:], suffix)
+
+	var bin_buf bytes.Buffer
+	binary.Write(&bin_buf, binary.LittleEndian, command)
+	result, err := pthi.Call(bin_buf.Bytes(), GET_REQUEST_SIZE+1002)
+	if err != nil {
+		return AMT_STATUS_INTERNAL_ERROR, err
+	}
+	buf2 := bytes.NewBuffer(result)
+	response := readHeaderResponse(buf2)
+	return response.Status, nil
 }

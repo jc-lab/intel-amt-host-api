@@ -127,6 +127,9 @@ const STOP_CONFIGURATION_HBASED_RESPONSE = 0x0480005e
 const START_CONFIGURATION_HBASED_REQUEST = 0x0400008b
 const START_CONFIGURATION_HBASED_RESPONSE = 0x0480008b
 
+const SET_PKI_FQDN_SUFFIX_REQUEST = 0x0400002f
+const SET_PKI_FQDN_SUFFIX_RESPOSNE = 0x0480002f
+
 const STATE_INDEPENNDENCE_IsChangeToAMTEnabled_CMD = 0x5
 const STATE_INDEPENNDENCE_IsChangeToAMTEnabled_SUBCMD = 0x51
 
@@ -345,4 +348,9 @@ type StartConfigurationHBasedResponse struct {
 	Header        ResponseMessageHeader
 	HashAlgorithm CERT_HASH_ALGORITHM
 	AMTCertHash   [SHA_512_KEY_SIZE]byte
+}
+
+type SetPkiFQDNSuffix struct {
+	Header MessageHeader
+	Suffix AMTANSIString
 }
