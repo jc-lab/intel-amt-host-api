@@ -35,6 +35,8 @@ type Interface interface {
 	StopConfiguration() (status Status, err error)
 	StartConfigurationHBased(ServerHashAlgorithm CERT_HASH_ALGORITHM, ServerCertHash []byte, HostVPNEnable bool, NetworkDnsSuffix []string) (response StartConfigurationHBasedResponse, err error)
 	SetPkiFQDNSuffix(suffix string) (status Status, err error)
+	OpenUserInitiatedConnection() (status Status, err error)
+	CloseUserInitiatedConnection() (status Status, err error)
 }
 
 func NewCommand() Command {
@@ -487,5 +489,33 @@ func (pthi Command) SetPkiFQDNSuffix(suffix string) (status Status, err error) {
 	}
 	buf2 := bytes.NewBuffer(result)
 	response := readHeaderResponse(buf2)
+	return response.Status, nil
+}
+
+func (pthi Command) OpenUserInitiatedConnection() (status Status, err error) {
+	header := CreateRequestHeader(OPEN_USER_INITIATED_CONNECTION_REQUEST, 0)
+	var bin_buf bytes.Buffer
+	binary.Write(&bin_buf, binary.LittleEndian, header)
+	result, err := pthi.Call(bin_buf.Bytes(), GET_REQUEST_SIZE)
+	if err != nil {
+		return AMT_STATUS_INTERNAL_ERROR, err
+	}
+	buf2 := bytes.NewBuffer(result)
+	response := readHeaderResponse(buf2)
+
+	return response.Status, nil
+}
+
+func (pthi Command) CloseUserInitiatedConnection() (status Status, err error) {
+	header := CreateRequestHeader(CLOSE_USER_INITIATED_CONNECTION_REQUEST, 0)
+	var bin_buf bytes.Buffer
+	binary.Write(&bin_buf, binary.LittleEndian, header)
+	result, err := pthi.Call(bin_buf.Bytes(), GET_REQUEST_SIZE)
+	if err != nil {
+		return AMT_STATUS_INTERNAL_ERROR, err
+	}
+	buf2 := bytes.NewBuffer(result)
+	response := readHeaderResponse(buf2)
+
 	return response.Status, nil
 }

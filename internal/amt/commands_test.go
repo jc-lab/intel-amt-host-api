@@ -153,6 +153,12 @@ func (c MockPTHICommands) StartConfigurationHBased(ServerHashAlgorithm pthi.CERT
 func (c MockPTHICommands) SetPkiFQDNSuffix(suffix string) (status pthi.Status, err error) {
 	return 0, nil
 }
+func (c MockPTHICommands) OpenUserInitiatedConnection() (status pthi.Status, err error) {
+	return 0, nil
+}
+func (c MockPTHICommands) CloseUserInitiatedConnection() (status pthi.Status, err error) {
+	return 0, nil
+}
 
 var amt AMTCommand
 
